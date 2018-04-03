@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { autorun, observable, set } from 'mobx';
+import { autorun, observable } from 'mobx';
 // import { observer } from 'mobx-react';
 import Word from '../Word';
 
