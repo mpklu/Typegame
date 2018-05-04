@@ -126,7 +126,7 @@ class GameArea extends Component {
             let ctx = this.context;
             this.clear(ctx);
             this.y += 1;
-            ctx.fillText("Hello world!", this.x, this.y);
+            // ctx.fillText("Hello world!", this.x, this.y);
 
             let gameState = this.props.gameState;
             let wordArray = gameState.words;
@@ -203,7 +203,7 @@ class GameArea extends Component {
 
     render() {
         return (
-            <canvas id="myCanvas" width="600" height="400">
+            <canvas id="myCanvas" width="1200" height="600">
             </canvas>
         );
     }

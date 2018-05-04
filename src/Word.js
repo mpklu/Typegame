@@ -1,5 +1,10 @@
 // import { observable } from 'mobx';
 
+
+function isString(value) {
+    return typeof value === "string" || value instanceof String;
+}
+
 class Word {
     constructor(canvasWidth,
         canvasHeight,
@@ -22,11 +27,11 @@ class Word {
         this.hasTypedPart = false;
 
     }
-    accomplished (ctx) {
+    accomplished = (ctx) => {
         this.completed = true;
     }
 
-    correctedX() {
+    correctedX = () => {
         const width = this.ctx.measureText(this.text).width;
         const oversizeX = this.x + width - (this.canvasWidth - this.leftPadding);
         if (oversizeX > 0) {
@@ -36,20 +41,24 @@ class Word {
         }
     }
 
-    typedText(typed) {
+
+    typedText = (typed) => {
         if (typed.length > 0) {
             let typedWord = typed.join("");
-            if (this.text.startsWith(typedWord)) {
-                return typedWord;
+            if (isString(this.text)) {
+                if (this.text.startsWith(typedWord)) {
+                    return typedWord;
+                }
             }
+            
         }
         return "";
     }
 
-    outOfBound() {
+    outOfBound = () => {
         return this.canvasHeight + this.fontHeight < this.y;
     }
-    update(typed) {
+    update = (typed) => {
         this.y = this.y + 1;
         this.ctx.font = this.fontHeight + "px Arial";
 
@@ -61,7 +70,7 @@ class Word {
                 this.accomplished(this.ctx);
             } else {
                 // console.log("typed part of "+ this.text);
-                this.ctx.fillStyle = "black";
+                this.ctx.fillStyle = "yellow";
                 let x = this.correctedX();
                 this.ctx.fillText(typedPart, x, this.y);
                 this.ctx.fillStyle = "red";
